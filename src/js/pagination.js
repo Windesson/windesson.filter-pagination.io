@@ -1,4 +1,4 @@
-// Generate a list of links up to the max num of pages.
+// Generate pagination buttons, up to the max num of pages.
 const appendChildLiArchors = (ulElement) => {
 
     for (let pageNum = 1; pageNum <= getPageCount(); pageNum++) {
@@ -15,22 +15,27 @@ const appendChildLiArchors = (ulElement) => {
     }
 };
 
-const deactivateElements = () => {
+//loop through all buttons and deactivate. 
+const deactivateAllPageBtns = () => {
     document.querySelectorAll('a.js-page-btn.active').forEach(function (element) {
         deactivateElement(element);
     });
 };
 
+//removes element class 'active'
 const deactivateElement = (element) => {
     if (element.classList.contains("active"))
          element.classList.remove("active");
 };
 
+//add element class 'active'
 const activateElement = (element) => {
     if (!element.classList.contains("active"))
         element.classList.add("active");
 };
 
+//delete div.pagination from the DOM. 
+//helpful when working with the example files.
 const removeExistingPagination = () => {
     const existingDivPagination = document.querySelector('div.pagination');
 
@@ -38,25 +43,35 @@ const removeExistingPagination = () => {
         document.querySelector('div.page').removeChild(existingDivPagination);
 };
 
+//Add click event to unordered list containing the buttons.
 const addEventOnBtnPageClick = (element) => {
 
     element.addEventListener("click", (event) => {
            if (event.target.tagName.toUpperCase() !== 'A') return;
-            deactivateElements();
+            deactivateAllPageBtns();
             showPage(event.target.innerText);
             activateElement(event.target);
         });
     
 };
 
+//Append pagination/buttons to DOM
 const appendNewPagination = () => {
+
+    //removes if exists
+    removeExistingPagination();
+
+    //create unordered list and append the buttons
     const ulElement = document.createElement('ul');
     appendChildLiArchors(ulElement);
     addEventOnBtnPageClick(ulElement);
 
+    //create pagination div and add the unordered list
     const divElement = document.createElement('div');
     divElement.setAttribute('class', 'pagination');
     divElement.appendChild(ulElement);
+
+    //append new pagination div
     document.querySelector('div.page').appendChild(divElement);
 };
 

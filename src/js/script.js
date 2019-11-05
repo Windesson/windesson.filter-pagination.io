@@ -18,9 +18,6 @@ const getPageCount = () => Math.ceil(searchableStudents.length / 10.0);
 //Generate, append, and add pagination.
 const generatePagination = () => {
 
-    //removes if exists, helpful when working with the example files. 
-    removeExistingPagination();
-
     //add page navigation to the bottom of the page. 
     appendNewPagination();
 
@@ -55,10 +52,10 @@ const searchOnMatch = (studentNameToSearch) => {
 
     }
     searchableStudents = matchingStudents;
-
-
+    
     //Update DOM Pagination to work on matching names only.
     generatePagination();
+
 };
 
 // call pagination and include all students in the DOM 
