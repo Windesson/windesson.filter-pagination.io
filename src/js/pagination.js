@@ -7,7 +7,6 @@ const appendChildLiArchors = (ulElement) => {
         aElement.setAttribute("href", "#");
         aElement.setAttribute("class", "js-page-btn");
         aElement.innerText = pageNum;
-        addBtnEventListener(aElement);
 
         let liElement = document.createElement('li');
         liElement.appendChild(aElement);
@@ -39,12 +38,13 @@ const removeExistingPagination = () => {
         document.querySelector('div.page').removeChild(existingDivPagination);
 };
 
-const addBtnEventListener = (abutton) => {
+const addEventOnBtnPageClick = (element) => {
 
-    abutton.addEventListener("click",  () => {
+    element.addEventListener("click", (event) => {
+           if (event.target.tagName.toUpperCase() !== 'A') return;
             deactivateElements();
-            showPage(abutton.innerText);
-            activateElement(abutton);
+            showPage(event.target.innerText);
+            activateElement(event.target);
         });
     
 };
@@ -52,6 +52,7 @@ const addBtnEventListener = (abutton) => {
 const appendNewPagination = () => {
     const ulElement = document.createElement('ul');
     appendChildLiArchors(ulElement);
+    addEventOnBtnPageClick(ulElement);
 
     const divElement = document.createElement('div');
     divElement.setAttribute('class', 'pagination');
