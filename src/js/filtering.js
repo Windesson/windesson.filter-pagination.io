@@ -1,5 +1,4 @@
-var studentSearchInputNode;
-
+//remove students node
 const removeStudentSearchNode = () => {
     const studentSearchNode = document.querySelector('div.student-search');
 
@@ -9,11 +8,12 @@ const removeStudentSearchNode = () => {
      }
 };
 
+//generate students field, add event listener 
 const generateStudentSearchNode = () => {
 
     removeStudentSearchNode();
     
-    studentSearchInputNode  = document.createElement("input");
+    const studentSearchInputNode  = document.createElement("input");
     studentSearchInputNode.setAttribute('placeholder', 'Search for students...');
     studentSearchInputNode.addEventListener("keyup", (event) => {
         var x = event.which || event.keyCode;
@@ -31,8 +31,7 @@ const generateStudentSearchNode = () => {
     div.setAttribute('class', 'student-search');
     div.appendChild(studentSearchInputNode);
     div.appendChild(btn);        
-
-
+    
     document.querySelector(".page-header").appendChild(div);
 };
 
