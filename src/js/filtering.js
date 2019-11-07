@@ -1,5 +1,3 @@
-var studentSearchInputNode;
-
 //remove students node
 const removeStudentSearchNode = () => {
     const studentSearchNode = document.querySelector('div.student-search');
@@ -11,11 +9,11 @@ const removeStudentSearchNode = () => {
 };
 
 //generate students field, add event listener 
-const generateStudentSearchNode = () => {
+const createStudentDOMSearchForm = () => {
 
     removeStudentSearchNode();
     
-    studentSearchInputNode  = document.createElement("input");
+    const studentSearchInputNode  = document.createElement("input");
     studentSearchInputNode.setAttribute('placeholder', 'Search for students...');
 
     const btn = document.createElement("button");
@@ -32,6 +30,8 @@ const generateStudentSearchNode = () => {
 	div.appendChild(form); 
     
     document.querySelector(".page-header").appendChild(div);
+
+    return form;
 };
 
 
