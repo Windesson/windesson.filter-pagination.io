@@ -15,22 +15,22 @@ const generateStudentSearchNode = () => {
     
     const studentSearchInputNode  = document.createElement("input");
     studentSearchInputNode.setAttribute('placeholder', 'Search for students...');
-    studentSearchInputNode.addEventListener("keyup", (event) => {
-        var x = event.which || event.keyCode;
-        if (x !== 13) return;
-        searchOnMatch(studentSearchInputNode.value);
-    });
 
     const btn = document.createElement("button");
+	btn.setAttribute('type', 'Submit');
     btn.innerText = "Search";
-    btn.addEventListener("click", (event) => {
-        searchOnMatch(studentSearchInputNode.value);
-    });
 
-    const div = document.createElement("div");
+	const form = document.createElement("form");
+	form.appendChild(studentSearchInputNode);
+    form.appendChild(btn); 	
+    form.addEventListener("submit", (event) => {
+		event.preventDefault()
+        searchOnMatch(studentSearchInputNode.value);
+    }); 
+    
+	const div = document.createElement("div");
     div.setAttribute('class', 'student-search');
-    div.appendChild(studentSearchInputNode);
-    div.appendChild(btn);        
+	div.appendChild(form); 
     
     document.querySelector(".page-header").appendChild(div);
 };
