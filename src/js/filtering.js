@@ -1,3 +1,5 @@
+var studentSearchInputNode;
+
 //remove students node
 const removeStudentSearchNode = () => {
     const studentSearchNode = document.querySelector('div.student-search');
@@ -13,7 +15,7 @@ const generateStudentSearchNode = () => {
 
     removeStudentSearchNode();
     
-    const studentSearchInputNode  = document.createElement("input");
+    studentSearchInputNode  = document.createElement("input");
     studentSearchInputNode.setAttribute('placeholder', 'Search for students...');
 
     const btn = document.createElement("button");
@@ -21,12 +23,9 @@ const generateStudentSearchNode = () => {
     btn.innerText = "Search";
 
 	const form = document.createElement("form");
+	form.setAttribute('class', 'js-searchForm');
 	form.appendChild(studentSearchInputNode);
     form.appendChild(btn); 	
-    form.addEventListener("submit", (event) => {
-		event.preventDefault()
-        searchOnMatch(studentSearchInputNode.value);
-    }); 
     
 	const div = document.createElement("div");
     div.setAttribute('class', 'student-search');

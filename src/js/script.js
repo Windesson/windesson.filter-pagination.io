@@ -64,6 +64,12 @@ const main = () => {
 
     //generate search input field.
     generateStudentSearchNode();
+	
+	//call student search action from textbox or submit btn.
+	document.querySelector('.js-searchForm').addEventListener("submit", (event) => {
+		event.preventDefault()
+        searchOnMatch(studentSearchInputNode.value);
+    }); 
 };
 
 
