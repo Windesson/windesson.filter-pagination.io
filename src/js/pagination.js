@@ -36,11 +36,13 @@ const activateElement = (element) => {
 
 //delete div.pagination from the DOM. 
 //helpful when working with the example files.
-const removeExistingPagination = () => {
-    const existingDivPagination = document.querySelector('div.pagination');
+const removeStudentPaginationNode = () => {
+    const studentPagination = document.querySelector('div.pagination');
 
-    if (existingDivPagination !== null)
-        document.querySelector('div.page').removeChild(existingDivPagination);
+    if (studentPagination === null) return;
+
+    const parent = studentPagination.parentElement;
+    parent.removeChild(studentPagination);
 };
 
 //Add click event to unordered list containing the buttons.
@@ -56,10 +58,10 @@ const addEventOnBtnPageClick = (element) => {
 };
 
 //Append pagination/buttons to DOM
-const appendNewPagination = () => {
+const generateStudentPaginationNode = () => {
 
     //removes if exists
-    removeExistingPagination();
+    removeStudentPaginationNode();
 
     //create unordered list and append the buttons
     const ulElement = document.createElement('ul');

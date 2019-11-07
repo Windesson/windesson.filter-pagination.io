@@ -15,24 +15,22 @@ var searchableStudents = allStudents();
 //calculate the number of pages needed to diplay at most 10 students at the time.
 const getPageCount = () => Math.ceil(searchableStudents.length / 10.0);
 
-//Generate, append, and add pagination.
-const generatePagination = () => {
-
+const generateStudentPagination = () => {
     //add page navigation to the bottom of the page. 
-    appendNewPagination();
+    generateStudentPaginationNode();
 
     //select and navigate to the first page.
     document.querySelector("a.js-page-btn").click();
 };
 
+
 //Limit the pagination to only students matching the searched name.
 const searchOnMatch = (studentNameToSearch) => {
 
-    if (studentNameToSearch.length === 0 || !studentNameToSearch.trim())
-    {
+    if (studentNameToSearch.length === 0 || !studentNameToSearch.trim()) {
         // search all students 
         searchableStudents = allStudents();
-        return generatePagination();
+        return generateStudentPagination();
     }
 
     //hide all students 
@@ -46,18 +44,29 @@ const searchOnMatch = (studentNameToSearch) => {
 
         let name = student.querySelector('h3').innerText.toLowerCase();
 
-        if (name.startsWith(studentNameToSearch.toLowerCase())){
+        if (name.includes(studentNameToSearch.toLowerCase())) {
             matchingStudents.push(student);
         }
 
     }
     searchableStudents = matchingStudents;
-    
-    //Update DOM Pagination to work on matching names only.
-    generatePagination();
+
+    //Refresh pagination
+    generateStudentPagination();
 
 };
 
+
+const main = () => {
+
+    //Generate, append, and add pagination.
+    generateStudentPagination();
+
+    //generate search input field.
+    generateStudentSearchNode();
+};
+
+
 // call pagination and include all students in the DOM 
-generatePagination();
+main();
 
